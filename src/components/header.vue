@@ -1,15 +1,10 @@
 <template>
-  <div class="hello"></div>
+  <div class="hello">hola desde el header</div>
 </template>
 
 <script>
 export default {
-  name: "HelloWorld",
-  data() {
-    return {
-      msg: "Welcome to Your Vue.js App",
-    };
-  },
+  name: "Header",
 };
 </script>
 
