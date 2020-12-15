@@ -10,7 +10,7 @@
                             <div class="form-group-input">
                               <div class="form-group">
                                   <label for="username" class="text-info">Username:</label><br>
-                                  <input type="text" name="username" id="username" class="form-control">
+                                  <input type="text" name="username" id="username" class="form-control" v->
                               </div>
                               <div class="form-group">
                                   <label for="password" class="text-info">Password:</label><br>
@@ -24,7 +24,7 @@
                             </div>
                           
                             <div id="register-link" class="text-left mt-1">
-                                <a href="#" class="link-registrate ">Registrate aquí</a>
+                                <router-link to="/" class="link-registrate">Iniciar Sesión</router-link>
                             </div>
                         </form>
                     </div>
@@ -42,6 +42,7 @@ export default {
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
+      
     };
   },
 };

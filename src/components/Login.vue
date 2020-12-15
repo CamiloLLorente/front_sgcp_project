@@ -5,16 +5,16 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="post">
+                        <form id="login-form" class="form" v-on:submit.prevent="Login">
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group-input">
                               <div class="form-group">
                                   <label for="username" class="text-info">Username:</label><br>
-                                  <input type="text" name="username" id="username" class="form-control">
+                                  <input type="text" name="username" id="username" class="form-control" v-model="username">
                               </div>
                               <div class="form-group">
                                   <label for="password" class="text-info">Password:</label><br>
-                                  <input type="text" name="password" id="password" class="form-control">
+                                  <input type="text" name="password" id="password" class="form-control" v-model="password">
                               </div>
                             </div>
                             <div class="form-group">
@@ -24,7 +24,10 @@
                             </div>
                           
                             <div id="register-link" class="text-left mt-1">
-                                <a href="#" class="link-registrate ">Registrate aquí</a>
+                                <router-link to="/register" class="link-registrate">Registrarse</router-link>
+                            </div>
+                            <div class="alert-danger p-2 text-center" v-if="msgError != ''">
+                              {{msgError}}
                             </div>
                         </form>
                     </div>
@@ -37,14 +40,47 @@
 </template>
 
 <script>
-export default {
-  name: "Login",
-  data() {
-    return {
-      msg: "Welcome to Your Vue.js App",
-    };
-  },
-};
+  import axios from 'axios'
+  import LoginVue from './Login.vue';
+  export default {
+    name: "Login",
+    data() {
+      return {
+        msg: "Welcome to Your Vue.js App",
+        username:"",
+        password: "",
+        error: false,
+        msgError:""
+      }
+    },
+    methods:{
+      Login(){
+        const user={
+          "username": this.username,
+          "password": this.password
+        }
+        axios.post("http://127.0.0.1:8000/usuario/login", user)
+        .then(data =>{
+          const userData ={
+            "username": data.data.username,
+            "email" : data.data.email
+
+          }
+          localStorage.setItem("user",data.data.username)
+          this.$router.push('dashboard')
+        }).catch(error =>{
+
+            if (error.response){
+
+              this.msgError= error.response.data.detail
+
+            }
+        })
+
+      } 
+
+    }
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
