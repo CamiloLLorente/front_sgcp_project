@@ -27,6 +27,9 @@ export default new Vuex.Store({
         },
         changeProductoActionHome(state){
             state.porductoAction = 'home';
+        },
+        changeProductoActionAgregar(state){
+            state.porductoAction = 'agregar';
         }
     }
 

@@ -31,9 +31,9 @@
               
             </td>
             <td>
-              <router-link to="/register" class="link-registrate">
-                <img src="@/assets/eliminar-icon.svg" width="40px" />
-              </router-link>
+              
+                <img src="@/assets/eliminar-icon.svg" width="40px" @click="eliminarProducto($event)" />
+            
             </td>
             
           </tr>
@@ -58,7 +58,10 @@
     }
   },
   methods:{
-    ...mapMutations(['changeProductoActionEditar'])
+    ...mapMutations(['changeProductoActionEditar']),
+    eliminarProducto(envet){
+      console.log(envet.target)
+    }
     
   },
   mounted(){

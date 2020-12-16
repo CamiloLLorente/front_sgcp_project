@@ -9,6 +9,9 @@
       <div v-if="porductoAction == 'editar'">
         <EditarProducto />
       </div>
+      <div v-if="porductoAction == 'agregar'">
+        <AgregarProducto />
+      </div>
       {{porductoAction}}
     </div>
     
@@ -19,6 +22,7 @@
 import Header from '@/components/Header'
 import Card from '@/components/producto/Card'
 import EditarProducto from '@/components/producto/EditarProducto'
+import AgregarProducto from '@/components/producto/AgregarProducto'
 import CardTable from '@/components/producto/CardTable'
 import { mapState } from 'vuex'
 export default {
@@ -34,7 +38,8 @@ export default {
     Header,
     Card,
     CardTable,
-    EditarProducto
+    EditarProducto,
+    AgregarProducto
 
   
   },

@@ -1,10 +1,13 @@
 <template>
   <div class="card">
-    <div class="card-header">
-      
+    <div class="card-header">      
       <h3><b-icon icon="search" class="mr-1"></b-icon>Buscar Productos</h3>
     </div>
+    <div class="d-flex justify-content-end mr-4 mt-2">
+      <img src="@/assets/agragar-icon.svg" width="40px" @click="changeProductoActionAgregar"/>
+    </div>
     <div class="card-seccion">
+      
       <form action="">
         <div class="input-group mt-3">
           <div class="input-group-prepend">
@@ -29,10 +32,14 @@
 </template>
 
 <script>
-
+import { mapMutations } from 'vuex'
 export default {
   
-  name: "Card"
+  name: "Card",
+  methods:{
+    ...mapMutations(['changeProductoActionAgregar'])
+    
+  }
 
   
 };
