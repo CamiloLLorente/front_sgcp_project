@@ -5,39 +5,37 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" v-on:submit.prevent="Registro">
-                            <h3 class="text-center text-info">Registro</h3>
+                        <form id="login-form" v-on:submit.prevent="ActualizaProductos">
+                            <h3 class="text-center text-info">Actualizar Productos</h3>
                             <div class="form-group-input">
                               <div class="form-group">
-                                  <label for="username" class="text-info">Username:</label><br>
-                                  <input type="text" name="username" id="username" class="form-control" v-model="username">
+                                  <label for="codigo" class="text-info">Codigo:</label><br>
+                                  <input type="text" name="codigo" id="codigo" class="form-control" v-model="productoTable.codigo">
                               </div>
                               <div class="form-group">
                                   <label for="nombre" class="text-info">Nombre:</label><br>
-                                  <input type="text" name="nombre" id="nombre" class="form-control" v-model="nombre">
+                                  <input type="text" name="nombre" id="nombre" class="form-control" v-model="productoTable.nombre">
                               </div>
                               <div class="form-group">
-                                  <label for="apellido" class="text-info">Apellido:</label><br>
-                                  <input type="text" name="apellido" id="apellido" class="form-control" v-model="apellido">
+                                  <label for="precio" class="text-info">Precio:</label><br>
+                                  <input type="number" name="precio" id="precio" class="form-control" v-model="productoTable.precio">
                               </div>
                               <div class="form-group">
-                                  <label for="email" class="text-info">email:</label><br>
-                                  <input type="email" name="email" id="email" class="form-control" v-model="email">
+                                  <label for="cantidad" class="text-info">Cantidad:</label><br>
+                                  <input type="number" name="cantidad" id="cantidad" class="form-control" v-model="productoTable.cantidad">
                               </div>
                               <div class="form-group">
-                                  <label for="password" class="text-info">Password:</label><br>
-                                  <input type="password" name="password" id="password" class="form-control" v-model="password">
+                                  <label for="seccion" class="text-info">seccion:</label><br>
+                                  <input type="seccion" name="text" id="seccion" class="form-control" v-model="productoTable.seccion">
                               </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-group-submit">
-                                  <input type="submit" name="Ingresar" class="btn btn-info btn-md ingresar" value="Ingresar">
+                                  <input type="submit" name="Actualizar" class="btn btn-info btn-md ingresar" value="Actualizar">
                                 </div>
                             </div>
                           
-                            <div id="register-link" class="text-left mt-1">
-                                <router-link to="/" class="link-registrate">Iniciar Sesión</router-link>
-                            </div>
+                  
                         </form>
                     </div>
                 </div>
@@ -50,8 +48,10 @@
 
 <script>
 import axios from 'axios'
+import { mapState, mapMutations } from 'vuex'
+
 export default {
-  name: "Login",
+  name: "EditarProducto",
   data() {
     return {
       username: '',
@@ -62,20 +62,23 @@ export default {
       
     };
   },
+  computed:{
+    ...mapState(['productoTable'])
+  },
   methods:{
-    Registro(){
-      const usuario = {
-        "username": this.username,
-        "nombre": this.nombre,
-        "apellido": this.apellido,
-        "email": this.email,
-        "password": this.password
-
-      }
-      axios.post("http://127.0.0.1:8000/usuario/nuevo",usuario)
+    ...mapMutations(['changeProductoActionHome']),
+    ActualizaProductos(){
+      axios.put(`http://127.0.0.1:8000/producto/${this.productoTable.codigo}`, this.productoTable)
       .then(data =>{
-        localStorage.setItem("user",data.data.username)
-        this.$router.push('dashboard')
+        console.log(data.data)
+        this.changeProductoActionHome()
+        
+      }).catch(error =>{
+
+          if (error.response){
+
+            console.log(error.response.data.detail)
+          }
       })
 
     }
@@ -85,13 +88,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .wraper{
-    margin: 0;
-    padding: 0;
-    background:#3c8dbc;
-    height: 100vh;
-    color:#3c8dbc;
-  }
+  
   #login-box {
     margin-top: 20px;
     /* max-width: 600px; */
@@ -121,11 +118,6 @@ export default {
     background: #d34d2c;
     border: 1px solid #fe6b47;
   }
-  .link-registrate{
-    color:#3c8dbc;
-  }
-  .link-registrate:hover{
-    color: #fe6b47;
-  }
+ 
 
 </style>

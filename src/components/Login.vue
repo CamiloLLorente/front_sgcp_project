@@ -88,7 +88,7 @@
   .wraper{
     margin: 0;
     padding: 0;
-    background-color: #17a2b8;
+    background:#3c8dbc;
     height: 100vh;
   }
   #login-box {

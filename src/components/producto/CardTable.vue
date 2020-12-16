@@ -25,9 +25,10 @@
             <td>{{producto.cantidad}}</td>
             <td>{{producto.seccion}}</td>
             <td>
-              <router-link :to="'producto/nuevo/'+producto.codigo" class="link-registrate">
-                <img src="@/assets/editar-icon.svg" width="40px" />
-              </router-link>
+              
+                <!-- <img src="@/assets/editar-icon.svg" width="40px" @click="changeProductoActionEditar($event)"/> -->
+                <img src="@/assets/editar-icon.svg" width="40px" @click="changeProductoActionEditar($event)"/>
+              
             </td>
             <td>
               <router-link to="/register" class="link-registrate">
@@ -46,6 +47,7 @@
 </template>
 
 <script>
+  import { mapMutations } from 'vuex'
   import axios from 'axios'
   export default {
     
@@ -54,6 +56,10 @@
     return{
       listaProductos : []
     }
+  },
+  methods:{
+    ...mapMutations(['changeProductoActionEditar'])
+    
   },
   mounted(){
 
@@ -88,10 +94,7 @@
     color:whitesmoke;
     margin-left:5px ;
   }
-  .card-seccion{
-    
-   
-  }
+  
 
   
 </style>

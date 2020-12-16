@@ -6,8 +6,11 @@ import router from './router'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import Vuex from 'vuex'
+import store from './store'
 
 Vue.config.productionTip = false
+Vue.use(Vuex)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueAxios, axios)
@@ -17,6 +20,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'

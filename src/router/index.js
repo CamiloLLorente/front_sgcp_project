@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
-import Dashboard from '@/components/Dashboard'
+import Productos from '@/components/producto/Productos'
 Vue.use(Router)
 
 export default new Router({
@@ -19,9 +19,10 @@ export default new Router({
       component: Register
     },
     {
-      path: '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard
-    }
+      path: '/productos',
+      name: 'Productos',
+      component: Productos
+    },
+    
   ]
 })
