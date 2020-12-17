@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <Header />
+   <!--  <Header />
     <div class="contenedor">
       <div v-if="porductoAction == 'home'">
         <Card />
@@ -15,20 +15,20 @@
       <div v-if="porductoAction == 'nuevo'">
         <Card />
         <CardTable />
-      </div>
+      </div> -->
       
-    </div>
+    <!-- </div> -->
     
   </div>
 </template>
 
 <script>
-import Header from './../Header'
+/* import Header from './../Header'
 import Card from './Card'
 import EditarProducto from './EditarProducto'
 import AgregarProducto from './agregarProducto'
 import CardTable from './CardTable'
-import { mapState } from 'vuex'
+import { mapState } from 'vuex' */
 export default {
   
   name: "Productos",
@@ -39,11 +39,11 @@ export default {
   },
 
   components:{
-    Header,
+    /* Header,
     Card,
     CardTable,
     EditarProducto,
-    AgregarProducto
+    AgregarProducto */
 
   
   },
