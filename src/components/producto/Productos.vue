@@ -23,11 +23,11 @@
 </template>
 
 <script>
-import Header from '@/components/Header'
-import Card from '@/components/producto/Card'
-import EditarProducto from '@/components/producto/EditarProducto'
-import AgregarProducto from '@/components/producto/AgregarProducto'
-import CardTable from '@/components/producto/CardTable'
+import Header from './../Header'
+import Card from './Card'
+import EditarProducto from './EditarProducto'
+import AgregarProducto from './agregarProducto'
+import CardTable from './CardTable'
 import { mapState } from 'vuex'
 export default {
   
