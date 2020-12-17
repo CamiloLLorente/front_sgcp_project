@@ -33,6 +33,7 @@
             <td>
               
                 <img src="@/assets/eliminar-icon.svg" width="40px" @click="eliminarProducto($event)" />
+                
             
             </td>
             
@@ -47,31 +48,75 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapState } from 'vuex'
   import axios from 'axios'
   export default {
     
   name: "CardTable",
   data(){
     return{
-      listaProductos : []
+      listaProductos : [],
+      montado: false
     }
+  },
+  computed:{
+    ...mapState(['codigoBuscado','porductoAction'])
   },
   methods:{
-    ...mapMutations(['changeProductoActionEditar']),
+    ...mapMutations(['changeProductoActionEditar','changeProductoActionNuevo']),
     eliminarProducto(envet){
-      console.log(envet.target)
+      const codigo = event.target.parentElement.parentElement.children[0].textContent
+      axios.delete(`https://proyecto-sgcp.herokuapp.com/producto/${codigo}`)
+      this.changeProductoActionNuevo()
+      this.obtenerProductos()
+      
+    },
+    obtenerProductos(){
+      axios.get("https://proyecto-sgcp.herokuapp.com/productos")
+      .then(data =>{
+        this.listaProductos = []
+        this.listaProductos = data.data
+        console.log(data.data)
+      })
+    },
+    obtenerProducto(value){
+
+      axios.get(`https://proyecto-sgcp.herokuapp.com/producto/${value}`)
+        .then(data =>{
+          this.listaProductos = []
+          this.listaProductos.push(data.data)
+          console.log(data.data)
+        }).catch(error =>{
+
+            if (error.response){
+
+              console.log(error.response.data.detail)
+
+            }
+        })
     }
     
   },
-  mounted(){
 
-    axios.get("http://127.0.0.1:8000/productos")
-    .then(data =>{
-      this.listaProductos = data.data
-    })
+  mounted(){
+    this.obtenerProducto("hhh")
+    this.obtenerProductos()
+    console.log("se monto el componente")
     
+  },
+  watch:{
+
+
+    codigoBuscado:function(value) {
+      if(value == ""){
+        this.obtenerProductos()
+      }else{
+        this.obtenerProducto(value)
+      }
+    }
   }
+
+  
 
 
   
@@ -97,7 +142,9 @@
     color:whitesmoke;
     margin-left:5px ;
   }
-  
+  img{
+    cursor: pointer;
+  }
 
   
 </style>

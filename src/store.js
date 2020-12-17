@@ -7,6 +7,7 @@ export default new Vuex.Store({
 
     state:{
         porductoAction: 'home',
+        codigoBuscado:'',
         productoTable:{
             codigo:'',
             nombre:'',
@@ -28,8 +29,18 @@ export default new Vuex.Store({
         changeProductoActionHome(state){
             state.porductoAction = 'home';
         },
+        changeProductoActionNuevo(state){
+            state.porductoAction = 'nuevo';
+        },
         changeProductoActionAgregar(state){
             state.porductoAction = 'agregar';
+        },
+        changeProductoActionEliminar(state){
+            state.porductoAction = 'eliminar';
+        },
+        buscarProductos(state, codigo){
+            state.codigoBuscado = codigo
+            console.log(codigo)
         }
     }
 

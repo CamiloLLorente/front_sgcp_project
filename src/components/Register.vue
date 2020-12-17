@@ -72,7 +72,7 @@ export default {
         "password": this.password
 
       }
-      axios.post("http://127.0.0.1:8000/usuario/nuevo",usuario)
+      axios.post("https://proyecto-sgcp.herokuapp.com/usuario/nuevo",usuario)
       .then(data =>{
         localStorage.setItem("user",data.data.username)
         this.$router.push('dashboard')

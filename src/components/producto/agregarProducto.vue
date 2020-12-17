@@ -72,7 +72,7 @@ export default {
         cantidad:this.cantidad,
         seccion: this.seccion
       }
-      axios.post("http://127.0.0.1:8000/producto/nuevo",producto)
+      axios.post("https://proyecto-sgcp.herokuapp.com/producto/nuevo",producto)
       .then(data =>{
         console.log(data.data)
         this.changeProductoActionHome()

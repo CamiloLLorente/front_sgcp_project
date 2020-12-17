@@ -68,7 +68,7 @@ export default {
   methods:{
     ...mapMutations(['changeProductoActionHome']),
     ActualizaProductos(){
-      axios.put(`http://127.0.0.1:8000/producto/${this.productoTable.codigo}`, this.productoTable)
+      axios.put(`https://proyecto-sgcp.herokuapp.com/producto/${this.productoTable.codigo}`, this.productoTable)
       .then(data =>{
         console.log(data.data)
         this.changeProductoActionHome()

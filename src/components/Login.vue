@@ -59,7 +59,7 @@
           "username": this.username,
           "password": this.password
         }
-        axios.post("http://127.0.0.1:8000/usuario/login", user)
+        axios.post("https://proyecto-sgcp.herokuapp.com/usuario/login", user)
         .then(data =>{
           const userData ={
             "username": data.data.username,

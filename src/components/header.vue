@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light nav-main">
-    <a class="navbar-brand" href="#">Camilo</a>
+    <a class="navbar-brand" href="#">SGCP</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -109,5 +109,9 @@ export default {
   .navbar-light .navbar-nav .nav-link{
     color:whitesmoke;
   }
+  .navbar-light .navbar-brand {
+    color:whitesmoke;
+  }
+
 </style>
 

@@ -12,7 +12,11 @@
       <div v-if="porductoAction == 'agregar'">
         <AgregarProducto />
       </div>
-      {{porductoAction}}
+      <div v-if="porductoAction == 'nuevo'">
+        <Card />
+        <CardTable />
+      </div>
+      
     </div>
     
   </div>

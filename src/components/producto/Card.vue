@@ -15,13 +15,13 @@
           </div>
           <select class="custom-select input-size p-0" id="inputGroupSelect01">
             <option selected >Codigo</option>
-            <option value="1">Nombre</option>
+            
           </select>
         </div>
         <div class="input-group mt-3 ">
-          <input type="text" class="form-control input-size" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <input type="text" class="form-control input-size" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="codigo" >
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary btn-search btn-size" type="button">Buscar</button>
+            <button class="btn btn-outline-secondary btn-search btn-size" type="button" @click="buscarProductos(codigo)">Buscar</button>
           </div>
         </div>
       </form>
@@ -36,10 +36,21 @@ import { mapMutations } from 'vuex'
 export default {
   
   name: "Card",
+  data(){
+    return{
+      codigo: ''
+    }
+  },
   methods:{
-    ...mapMutations(['changeProductoActionAgregar'])
+    ...mapMutations(['changeProductoActionAgregar','buscarProductos'])
     
+  }, 
+  watch:{
+    codigo:function(value) {
+      this.buscarProductos(this.codigo)
+    }
   }
+  
 
   
 };
@@ -91,5 +102,8 @@ export default {
   }
   option{
     font-size: 15px;
+  }
+  img{
+    cursor: pointer;
   }
 </style>
